@@ -28,12 +28,24 @@ body {
   font-size: 17px;
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 .wrap {
   max-width: 760px;
   margin: 0 auto;
   padding: 0 24px;
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+@media (max-width: 480px) {
+  .wrap {
+    padding: 0 16px;
+  }
 }
 
 a {
@@ -60,6 +72,8 @@ h4 {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 .brand {
   display: flex;
@@ -69,6 +83,7 @@ h4 {
   font-weight: 700;
   font-size: 18px;
   letter-spacing: 0.08em;
+  min-width: 0;
 }
 .brand .lam {
   color: var(--carmesim);
@@ -76,10 +91,12 @@ h4 {
 .brand svg {
   width: 26px;
   height: 26px;
+  flex-shrink: 0;
 }
 .site-nav {
   display: flex;
   gap: 24px;
+  flex-wrap: wrap;
 }
 .site-nav a {
   font-family: var(--mono);
@@ -91,6 +108,12 @@ h4 {
 }
 .site-nav a:hover {
   color: var(--marmore);
+}
+
+@media (max-width: 400px) {
+  .brand {
+    font-size: 15px;
+  }
 }
 
 /* ---------- Listagem ---------- */
@@ -120,6 +143,12 @@ h4 {
   max-width: 520px;
 }
 
+@media (max-width: 640px) {
+  .hero-blog {
+    padding: 48px 0 32px;
+  }
+}
+
 .post-list {
   display: flex;
   flex-direction: column;
@@ -143,7 +172,8 @@ h4 {
 }
 .post-card .meta {
   display: flex;
-  gap: 14px;
+  flex-wrap: wrap;
+  gap: 8px 14px;
   font-family: var(--mono);
   font-size: 12px;
   letter-spacing: 1.5px;
@@ -157,10 +187,18 @@ h4 {
 .post-card h2 {
   font-size: 22px;
   margin-bottom: 8px;
+  overflow-wrap: break-word;
 }
 .post-card p {
   color: var(--nevoa);
   font-size: 15px;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 640px) {
+  .post-card {
+    padding: 20px;
+  }
 }
 
 /* ---------- Artigo ---------- */
@@ -171,7 +209,8 @@ h4 {
 }
 .article-header .meta {
   display: flex;
-  gap: 14px;
+  flex-wrap: wrap;
+  gap: 8px 14px;
   font-family: var(--mono);
   font-size: 12px;
   letter-spacing: 1.5px;
@@ -183,24 +222,38 @@ h4 {
   color: var(--carmesim);
 }
 .article-header h1 {
-  font-size: clamp(30px, 4.5vw, 42px);
+  font-size: clamp(28px, 4.5vw, 42px);
+  overflow-wrap: break-word;
 }
 .article-header .desc {
   color: var(--nevoa);
   margin-top: 14px;
   font-size: 18px;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 640px) {
+  .article-header {
+    padding: 40px 0 28px;
+  }
+  .article-header .desc {
+    font-size: 16px;
+  }
 }
 
 .prose {
   padding-bottom: 96px;
+  overflow-wrap: break-word;
 }
 .prose h2 {
   font-size: 26px;
   margin: 44px 0 16px;
+  overflow-wrap: break-word;
 }
 .prose h3 {
   font-size: 20px;
   margin: 32px 0 12px;
+  overflow-wrap: break-word;
 }
 .prose p {
   margin-bottom: 18px;
@@ -241,6 +294,9 @@ h4 {
   border-radius: 5px;
   padding: 2px 7px;
   color: var(--marmore);
+  overflow-wrap: break-word;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
 }
 .prose pre {
   background: var(--chumbo) !important;
@@ -251,6 +307,21 @@ h4 {
   overflow-x: auto;
   font-size: 14.5px;
   line-height: 1.6;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 640px) {
+  .prose h2 {
+    font-size: 22px;
+    margin: 36px 0 14px;
+  }
+  .prose h3 {
+    font-size: 18px;
+  }
+  .prose pre {
+    padding: 16px;
+    font-size: 13.5px;
+  }
 }
 
 /* KaTeX */
@@ -268,7 +339,11 @@ h4 {
 
 /* Tabelas */
 .prose table {
+  display: block;
   width: 100%;
+  max-width: fit-content;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   border-collapse: collapse;
   margin: 24px 0;
   font-size: 15px;
@@ -285,13 +360,13 @@ h4 {
 .prose td {
   border-bottom: 1px solid var(--aco);
   padding: 10px 14px;
+  white-space: nowrap;
 }
 
 /* ---------- Footer ---------- */
 .site-footer {
   border-top: 1px solid var(--aco);
   padding: 32px 0;
-  text-align: center;
   font-family: var(--mono);
   font-size: 13px;
   letter-spacing: 2px;
@@ -299,4 +374,34 @@ h4 {
 }
 .site-footer .lam {
   color: var(--carmesim);
+}
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.footer-social {
+  display: flex;
+  gap: 16px;
+}
+.footer-social a {
+  display: flex;
+  color: var(--nevoa);
+  transition: color 0.15s;
+}
+.footer-social a:hover {
+  color: var(--carmesim);
+}
+.footer-social svg {
+  width: 20px;
+  height: 20px;
+}
+
+@media (max-width: 480px) {
+  .footer-inner {
+    flex-direction: column;
+    text-align: center;
+  }
 }

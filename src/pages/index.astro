@@ -13,7 +13,7 @@ const pilares: Record<string, string> = {
   seguranca: "Segurança",
 };
 
-const fmt = new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' });
+const fmt = new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: 'short', year: 'numeric', timeZone: 'UTC' });
 ---
 <Base title="Spartan Dev Logs">
   <main class="wrap">

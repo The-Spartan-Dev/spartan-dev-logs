@@ -20,7 +20,7 @@ const pilares: Record<string, string> = {
   infraestrutura: 'Infraestrutura',
   seguranca: "Segurança",
 };
-const fmt = new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' });
+const fmt = new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: 'short', year: 'numeric', timeZone: 'UTC' });
 ---
 <Base title={`${post.data.title} — Spartan Dev Logs`} description={post.data.description}>
   <main class="wrap">
