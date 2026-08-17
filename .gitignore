@@ -1,0 +1,9 @@
+# Build output
+dist/
+
+# Generated
+.astro/
+.vscode/
+
+# Dependencies
+node_modules/

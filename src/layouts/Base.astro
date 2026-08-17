@@ -1,0 +1,63 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description = 'Artigos técnicos sobre arquitetura e engenharia de software.' } = Astro.props;
+---
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+
+    <!-- Fontes da marca -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS do KaTeX -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
+      integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap">
+        <a href="/" class="brand">
+          <svg viewBox="0 0 512 512" aria-hidden="true">
+            <polygon points="232,118 292,118 166,404 106,404" fill="#C8102E" />
+            <polygon points="232,118 292,118 406,404 346,404" fill="#E9E7E2" />
+          </svg>
+          <span>SP<span class="lam">Λ</span>RTAN DEV LOGS</span>
+        </a>
+        <nav class="site-nav">
+          <a href="/">Artigos</a>
+          <a href="https://youtube.com/@thespartandev" target="_blank" rel="noopener">YouTube</a>
+          <a href="https://github.com/The-Spartan-Dev" target="_blank" rel="noopener">GitHub</a>
+        </nav>
+      </div>
+    </header>
+
+    <slot />
+
+    <footer class="site-footer">
+      <div class="wrap">
+        SP<span class="lam">Λ</span>RTAN DEV LOGS<span class="lam">_</span>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  @import '../styles/global.css';
+</style>

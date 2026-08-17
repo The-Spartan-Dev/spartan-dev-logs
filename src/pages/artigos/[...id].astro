@@ -1,0 +1,40 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const artigos = await getCollection('artigos');
+  return artigos.map((post) => ({
+    params: { id: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const pilares: Record<string, string> = {
+  algoritmo: 'Algoritmo',
+  arquitetura: 'Arquitetura',
+  engenharia: 'Engenharia',
+  infraestrutura: 'Infraestrutura',
+  seguranca: "Segurança",
+};
+const fmt = new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' });
+---
+<Base title={`${post.data.title} — Spartan Dev Logs`} description={post.data.description}>
+  <main class="wrap">
+    <header class="article-header">
+      <div class="meta">
+        <span class="pilar">{pilares[post.data.pilar]}</span>
+        <span>{fmt.format(post.data.pubDate)}</span>
+        {post.data.tags.map((t) => <span>#{t}</span>)}
+      </div>
+      <h1>{post.data.title}</h1>
+      <p class="desc">{post.data.description}</p>
+    </header>
+    <article class="prose">
+      <Content />
+    </article>
+  </main>
+</Base>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- SPARTAN DEV — Símbolo principal (Λ bicolor) -->
+  <!-- Traço carmesim (esquerda): a disciplina espartana -->
+  <polygon points="232,118 292,118 166,404 106,404" fill="#C8102E"/>
+  <!-- Traço mármore (direita): a engenharia, cruzando por cima no ápice -->
+  <polygon points="232,118 292,118 406,404 346,404" fill="#E9E7E2"/>
+</svg>

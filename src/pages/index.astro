@@ -1,0 +1,38 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const artigos = (await getCollection('artigos', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const pilares: Record<string, string> = {
+  algoritmo: 'Algoritmo',
+  arquitetura: 'Arquitetura',
+  engenharia: 'Engenharia',
+  infraestrutura: 'Infraestrutura',
+  seguranca: "Segurança",
+};
+
+const fmt = new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' });
+---
+<Base title="Spartan Dev Logs">
+  <main class="wrap">
+    <section class="hero-blog">
+      <h1>Artigos<span class="cursor">_</span></h1>
+      <p>Os fundamentos e a disciplina por trás de software que aguenta pressão.</p>
+    </section>
+
+    <section class="post-list">
+      {artigos.map((post) => (
+        <a class="post-card" href={`/artigos/${post.id}/`}>
+          <div class="meta">
+            <span class="pilar">{pilares[post.data.pilar]}</span>
+            <span>{fmt.format(post.data.pubDate)}</span>
+          </div>
+          <h2>{post.data.title}</h2>
+          <p>{post.data.description}</p>
+        </a>
+      ))}
+    </section>
+  </main>
+</Base>
